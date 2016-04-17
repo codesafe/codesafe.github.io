@@ -3,32 +3,42 @@
   <head>
   </head>
   <body>
+<!--  	
     <select id='stateCombo' onchange='stateComboChange();'>
-	<!--
-        <option value='-1' title='-select one-'>-select one-</option>
-        <option value='0' title='Vic'>Vic</option>
-        <option value='1' title='Nsw'>Nsw</option>
-        <option value='2' title='Tas'>Tas</option>
-		-->
     </select>
  
     <select id='cityCombo' onchange='cityComboChange();'>
-	<!--
-        <option value='-1' title='-select state first-'>-select state first-</option>
--->
     </select>
  
      <select id='dongCombo' onchange='dongComboChange();'>
-	<!--
-        <option value='-1' title='-select state first-'>-select state first-</option>
--->
     </select>
  
-    <div id='tgt'></div>
+	<div id='tgt'></div>
 	<div id='weather'></div>
-	<!--
-	<script src="script.js"></script>
-	-->
 	<script src="http://codesafe.github.io/script.js"></script>
+-->
+<p>
+	<strong>
+	<span style="font-size:18px">Mojo Watch Face 1.0</span>
+	</strong>
+</p>
+
+<p>&nbsp;</p>
+
+<p><input name="use24" required="required" type="checkbox" value="false" />&nbsp;24 시간제 사용</p>
+<p><input name="useposition" required="required" type="checkbox" />&nbsp;위치 기반 날씨 사용</p>
+<p><input name="viberate" required="required" type="checkbox" />&nbsp;날씨 업데이트 시 진동</p>
+<p>날씨 업데이트 주기</p>
+<p>
+	<select style="width: 97px;">
+	<option value="1">1시간</option>
+	<option value="2">2시간</option>
+	<option value="3">3시간</option>
+	<option value="6">6시간</option>
+	</select>
+</p>
+<p>&nbsp;</p>
+<p><input name="save" size="49" style="width: 163px; height: 23px;" type="button" value="저장" /></p>
+
 </body>
 </html>
