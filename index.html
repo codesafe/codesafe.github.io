@@ -57,8 +57,8 @@
 
       var submitButton = document.getElementById("save_button");
       submitButton.addEventListener("click", function() {
-          console.log("Save Config : " + JSON.stringify(options));
           var options = saveOptions();
+          console.log("Save Config : " + JSON.stringify(options));          
           var location = "pebblejs://close#" + encodeURIComponent(JSON.stringify(options));
           window.location.href = location;
         }, 
