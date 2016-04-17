@@ -48,10 +48,10 @@
         var updatetime_value = sel_updatetime.options[sel_updatetime.selectedIndex].value;
         
         var options = {
-        	"use24" : ch_use24.checked,
-        	"useposition" : ch_useposition.checked,
-        	"viberate" : ch_viberate.checked,
-        	"updatetime" : updatetime_value
+        	"use24" : ch_use24.checked == true ? 1 : 0,
+        	"useposition" : ch_useposition.checked == true ? 1 : 0,
+        	"viberate" : ch_viberate.checked == true ? 1 : 0,
+        	"updatetime" : Number(updatetime_value)
         }
         return options;
       };
