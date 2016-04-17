@@ -4,8 +4,8 @@
   	<title>Mojo Watch Face 1.0</title>
   </head>
   <body>
-<h1>Mojo Watch Face 1.0 설정</h1>
-
+<h1>Mojo WatchFace 설정</h1>
+<!--
     <select id='stateCombo' onchange='stateComboChange();'>
     </select>
  
@@ -18,6 +18,7 @@
 <div id='tgt'></div>
 <div id='weather'></div>
 <script src="http://codesafe.github.io/script.js"></script>
+-->
 
 <p><input id="use24" required="required" type="checkbox" value="false" />&nbsp;24 시간제 사용</p>
 <p><input id="useposition" required="required" type="checkbox" />&nbsp;위치 기반 날씨 사용</p>
@@ -33,10 +34,9 @@
 </p>
 <p>&nbsp;</p>
 
-	<p>
-		<button id="save_button">저장</button>
-	</p>
-	
+<p>
+	<button id="save_button">저장</button>
+</p>
 	
     <script>
       //Setup to allow easy adding more options later
@@ -59,11 +59,10 @@
       var submitButton = document.getElementById("save_button");
       submitButton.addEventListener("click", function() {
           var options = saveOptions();
-          console.log("Save Config : " + JSON.stringify(options));          
+          //console.log("Save Config : " + JSON.stringify(options));
           var location = "pebblejs://close#" + encodeURIComponent(JSON.stringify(options));
           window.location.href = location;
-        }, 
-		false);
+        }, false);
     </script>	
 </body>
 </html>
