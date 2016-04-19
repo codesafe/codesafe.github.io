@@ -34,7 +34,7 @@
 </p>
 <p>&nbsp;</p>
 <p>
-	<input id="address" type="textbox" value="서울시 영등포구 문래동">
+	<input id="address" type="hidden" value="서울시 영등포구 문래동">
 	<input id="addressbtn" type="button" value="경도/위도 계산" onclick="codeAddress()">
 	<input id="lat" type="text" value="">
 	<input id="lng" type="text" value="">
@@ -85,10 +85,10 @@
 			var addbtn = document.getElementById("addressbtn");
 			var lat = document.getElementById("lat");
 			var lng = document.getElementById("lng");
-			add.style.visibility = "hidden";	
-			addbtn.style.visibility = "hidden";
-			lat.style.visibility = "hidden";
-			lng.style.visibility = "hidden";
+			add.style.visibility = "visible";	
+			addbtn.style.visibility = "visible";
+			lat.style.visibility = "visible";
+			lng.style.visibility = "visible";
 		}
 	}
     
