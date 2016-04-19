@@ -38,8 +38,11 @@
 	<input id="addressbtn" type="button" value="지역 이름으로 날씨 얻기" onclick="codeAddress()">
 </p>	
 <p>	
+	<input id="fulladdress" type="text" value="">
+<!--	
 	<input id="lat" type="text" value="">
 	<input id="lng" type="text" value="">
+-->	
 </p>
 <p>
 	<button id="save_button">저장</button>
@@ -47,77 +50,80 @@
 	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>	
     <script>
     	// 주소로 lat, lng 구하기
-    	  function codeAddress() {
-		var geocoder = new google.maps.Geocoder();
-		var address = document.getElementById("address").value;
+		function codeAddress() {
+			var geocoder = new google.maps.Geocoder();
+			var address = document.getElementById("address").value;
 
-		geocoder.geocode( { 'address': address}, function(results, status) {
-		  if (status == google.maps.GeocoderStatus.OK) {
+			geocoder.geocode( { 'address': address}, function(results, status) {
+			  if (status == google.maps.GeocoderStatus.OK) {
 
-			//alert(results[0].geometry.location.lat());
-			//alert(results[0].geometry.location.lng());
-			document.getElementById("lat").value = results[0].geometry.location.lat();
-			document.getElementById("lng").value = results[0].geometry.location.lng();
+				//alert(results[0].geometry.location.lat());
+				//alert(results[0].geometry.location.lng());
+				//document.getElementById("lat").value = results[0].geometry.location.lat();
+				//document.getElementById("lng").value = results[0].geometry.location.lng();
+				
+				//document.getElementById("fulladdress").value = results[0].geometry.location.lng();
 
-		  } 
-		  else {
-			alert("Geocode was not successful for the following reason: " + status);
-		  }
+			  } 
+			  else {
+				alert("Geocode was not successful for the following reason: " + status);
+			  }
 
-		});
-	  }
-    
-	function onUseposition(chkbox){
-		if ( chkbox.checked == true ) {
-			alert("use position");
+			});
+		}
+
+		function visibleselectzone(vis) {
 			// hide select zone
 			var add = document.getElementById("address");
 			var addbtn = document.getElementById("addressbtn");
 			var lat = document.getElementById("lat");
 			var lng = document.getElementById("lng");
-			add.style.visibility = "hidden";
-			addbtn.style.visibility = "hidden";
-			lat.style.visibility = "hidden";
-			lng.style.visibility = "hidden";
+			add.style.visibility = vis == true ? "visible" : "hidden";
+			addbtn.style.visibility = vis == true ? "visible" : "hidden";
+			lat.style.visibility = vis == true ? "visible" : "hidden";
+			lng.style.visibility = vis == true ? "visible" : "hidden";
 		}
-		else {
-			alert("no use position");
-			// show select zone
-			var add = document.getElementById("address");
-			var addbtn = document.getElementById("addressbtn");
-			var lat = document.getElementById("lat");
-			var lng = document.getElementById("lng");
-			add.style.visibility = "visible";	
-			addbtn.style.visibility = "visible";
-			lat.style.visibility = "visible";
-			lng.style.visibility = "visible";
+		
+		function onUseposition(chkbox){
+			if ( chkbox.checked == true ) {
+				alert("use position");
+				// hide select zone
+				visibleselectzone(false);
+			}
+			else {
+				alert("no use position");
+				// show select zone
+				visibleselectzone(true);
+			}
 		}
-	}
     
-      //Setup to allow easy adding more options later
-      function saveOptions() {
-        var ch_use24 = document.getElementById("use24");
-        var ch_useposition = document.getElementById("useposition");
-        var ch_viberate = document.getElementById("viberate");
-        var sel_updatetime = document.getElementById("updatetime");
-        var updatetime_value = sel_updatetime.options[sel_updatetime.selectedIndex].value;
-        
-        var options = {
-        	"use24" : ch_use24.checked == true ? 1 : 0,
-        	"useposition" : ch_useposition.checked == true ? 1 : 0,
-        	"viberate" : ch_viberate.checked == true ? 1 : 0,
-        	"updatetime" : Number(updatetime_value)
-        }
-        return options;
-      };
+		//Setup to allow easy adding more options later
+		function saveOptions() {
+			var ch_use24 = document.getElementById("use24");
+			var ch_useposition = document.getElementById("useposition");
+			var ch_viberate = document.getElementById("viberate");
+			var sel_updatetime = document.getElementById("updatetime");
+			var updatetime_value = sel_updatetime.options[sel_updatetime.selectedIndex].value;
 
-      var submitButton = document.getElementById("save_button");
-      submitButton.addEventListener("click", function() {
-          var options = saveOptions();
-          console.log("Save Config : " + JSON.stringify(options));
-          var location = "pebblejs://close#" + encodeURIComponent(JSON.stringify(options));
-          window.location.href = location;
-        }, false);
+			var options = {
+				"use24" : ch_use24.checked == true ? 1 : 0,
+				"useposition" : ch_useposition.checked == true ? 1 : 0,
+				"viberate" : ch_viberate.checked == true ? 1 : 0,
+				"updatetime" : Number(updatetime_value)
+			}
+			return options;
+		};
+
+		var submitButton = document.getElementById("save_button");
+			submitButton.addEventListener("click", function() {
+			  var options = saveOptions();
+			  console.log("Save Config : " + JSON.stringify(options));
+			  var location = "pebblejs://close#" + encodeURIComponent(JSON.stringify(options));
+			  window.location.href = location;
+			}, false);
+			
+		visibleselectzone(false);
+	
     </script>	
 </body>
 </html>
