@@ -33,17 +33,23 @@
 	</select>
 </p>
 <p>&nbsp;</p>
-<p>
-	<input id="address" type="textbox" value="">
-	<input id="addressbtn" type="button" value="지역 이름으로 날씨 얻기" onclick="codeAddress()">
-</p>	
-<p>	
-	<input id="fulladdress" type="text" value="">
-<!--	
-	<input id="lat" type="text" value="">
-	<input id="lng" type="text" value="">
--->	
-</p>
+
+<form id="form1">
+	<p>
+		
+		<input id="address" type="textbox" value="">
+		<input id="addressbtn" type="button" value="지역 이름으로 날씨 얻기" onclick="codeAddress()">
+	</p>	
+	<p>	
+		<input id="fulladdress" type="text" value="" readonly>
+	<!--	
+		<input id="lat" type="text" value="">
+		<input id="lng" type="text" value="">
+	-->	
+	</p>
+</form>
+
+
 <p>
 	<button id="save_button">저장</button>
 </p>
@@ -53,6 +59,7 @@
 		function codeAddress() {
 			var geocoder = new google.maps.Geocoder();
 			var address = document.getElementById("address").value;
+			if( address == '' ) return;
 
 			geocoder.geocode( { 'address': address}, function(results, status) {
 			  if (status == google.maps.GeocoderStatus.OK) {
@@ -73,27 +80,35 @@
 		}
 
 		function visibleselectzone(vis) {
+			var f = document.getElementById("form1");
+			f.style.visibility = vis == true ? "visible" : "hidden";
+
+			/*
 			// hide select zone
 			var add = document.getElementById("address");
 			var addbtn = document.getElementById("addressbtn");
 			var fulladdress = document.getElementById("fulladdress");
-			//var lat = document.getElementById("lat");
-			//var lng = document.getElementById("lng");
 			add.style.visibility = vis == true ? "visible" : "hidden";
 			addbtn.style.visibility = vis == true ? "visible" : "hidden";
 			fulladdress.style.visibility = vis == true ? "visible" : "hidden";
+			
+			//var lat = document.getElementById("lat");
+			//var lng = document.getElementById("lng");			
 			//lat.style.visibility = vis == true ? "visible" : "hidden";
 			//lng.style.visibility = vis == true ? "visible" : "hidden";
+			
+			*/
+			
 		}
 		
 		function onUseposition(chkbox){
 			if ( chkbox.checked == true ) {
-				alert("use position");
+				//alert("use position");
 				// hide select zone
 				visibleselectzone(false);
 			}
 			else {
-				alert("no use position");
+				//alert("no use position");
 				// show select zone
 				visibleselectzone(true);
 			}
@@ -124,7 +139,7 @@
 			  window.location.href = location;
 			}, false);
 			
-		visibleselectzone(false);
+		//visibleselectzone(false);
 	
     </script>	
 </body>
