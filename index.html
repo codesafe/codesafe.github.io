@@ -21,7 +21,7 @@
 -->
 
 <p><input id="use24" required="required" type="checkbox" value="false" />&nbsp;24 시간제 사용</p>
-<p><input id="useposition" required="required" type="checkbox" />&nbsp;위치 기반 날씨 사용</p>
+<p><input id="useposition" required="required" type="checkbox" onclick="onUseposition(this)" />&nbsp;위치 기반 날씨 사용</p>
 <p><input id="viberate" required="required" type="checkbox" />&nbsp;날씨 업데이트 시 진동</p>
 <p>날씨 업데이트 주기</p>
 <p>
@@ -33,12 +33,69 @@
 	</select>
 </p>
 <p>&nbsp;</p>
+	  <div>
+		<input id="address" type="textbox" value="서울시 영등포구 문래동">
+		<input id="adressbtn" type="button" value="경도/위도 계산" onclick="codeAddress()">
+	  </div>
+
+	  <div>
+		<input id="lat" type="text" value="">
+		<input id="lng" type="text" value="">
+	  </div>
 
 <p>
 	<button id="save_button">저장</button>
 </p>
 	
     <script>
+    	// 주소로 lat, lng 구하기
+    	  function codeAddress() {
+		var geocoder = new google.maps.Geocoder();
+		var address = document.getElementById("address").value;
+
+		geocoder.geocode( { 'address': address}, function(results, status) {
+		  if (status == google.maps.GeocoderStatus.OK) {
+
+			//alert(results[0].geometry.location.lat());
+			//alert(results[0].geometry.location.lng());
+			document.getElementById("lat").value = results[0].geometry.location.lat();
+			document.getElementById("lng").value = results[0].geometry.location.lng();
+
+		  } 
+		  else {
+			alert("Geocode was not successful for the following reason: " + status);
+		  }
+
+		});
+	  }
+    
+	function onUseposition(chbox){
+		if ( chkbox.checked == true ) {
+			alert("use position");
+			// hide select zone
+			var add = document.getElementById("address");
+			var addbtn = document.getElementById("addressbtn");
+			var lat = document.getElementById("lat");
+			var lng = document.getElementById("lng");
+			add.style.visibility = "hidden";
+			addbtn.style.visibility = "hidden";
+			lat.style.visibility = "hidden";
+			lng.style.visibility = "hidden";
+		}
+		else {
+			alert("no use position");
+			// show select zone
+			var add = document.getElementById("address");
+			var addbtn = document.getElementById("addressbtn");
+			var lat = document.getElementById("lat");
+			var lng = document.getElementById("lng");
+			add.style.visibility = "hidden";	
+			addbtn.style.visibility = "hidden";
+			lat.style.visibility = "hidden";
+			lng.style.visibility = "hidden";
+		}
+	}
+    
       //Setup to allow easy adding more options later
       function saveOptions() {
         var ch_use24 = document.getElementById("use24");
