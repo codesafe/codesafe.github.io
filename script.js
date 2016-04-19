@@ -1,4 +1,4 @@
-﻿var statedata = [
+var statedata = [
 {"code":"11","value":"서울특별시"},
 {"code":"26","value":"부산광역시"},
 {"code":"27","value":"대구광역시"},
