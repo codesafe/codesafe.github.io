@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
   	<title>Mojo Watch Face 1.0</title>
@@ -25,7 +25,7 @@
 <p><input id="viberate" required="required" type="checkbox" />&nbsp;날씨 업데이트 시 진동</p>
 <p>날씨 업데이트 주기</p>
 <p>
-	<select id='updatetime' style="width: 97px;">
+	<select id='updatetime' style="width: 180px;">
 	<option value="1">1시간</option>
 	<option value="2">2시간</option>
 	<option value="3">3시간</option>
@@ -40,10 +40,10 @@
 		<p>지역 이름으로 날씨 얻기</p>
 		<p>검색결과가 없으면 위치기반으로 작동</p>
 		<input id="address" type="textbox" value="">
-		<input id="addressbtn" type="button" value="지역 검색" onclick="codeAddress()">
+		<input id="addressbtn" type="button" value="지역 검색" onclick="codeAddress()" >
 	</p>	
 	<p>	
-		<input id="fulladdress" type="text" value="" readonly>
+		<input id="fulladdress" type="text" value="" style="width: 260px;" readonly>
 	<!--	
 		<input id="lat" type="text" value="">
 		<input id="lng" type="text" value="">
@@ -53,7 +53,7 @@
 </form>
 
 <p>
-	<button id="save_button">저장</button>
+	<button id="save_button" style="width: 160px;" >저장</button>
 </p>
 <!--
 	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>	
@@ -76,8 +76,8 @@
 				
 				lat = results[0].geometry.location.lat();
 				lng = results[0].geometry.location.lng();
-				//alert(results[0].geometry.location.lat());
-				//alert(results[0].geometry.location.lng());
+				alert(results[0].geometry.location.lat());
+				alert(results[0].geometry.location.lng());
 				//document.getElementById("lat").value = results[0].geometry.location.lat();
 				//document.getElementById("lng").value = results[0].geometry.location.lng();
 			  } 
