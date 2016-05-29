@@ -21,6 +21,7 @@
 -->
 
 <p><input id="use24" required="required" type="checkbox" value="false" />&nbsp;24 시간제 사용</p>
+<p><input id="usedust" required="required" type="checkbox" value="false" />&nbsp;미세먼지 정보 사용</p>
 <p><input id="useposition" required="required" type="checkbox" onclick="onUseposition(this)" />&nbsp;위치 기반 날씨 사용</p>
 <p><input id="viberate" required="required" type="checkbox" />&nbsp;날씨 업데이트 시 진동</p>
 <p>날씨 업데이트 주기</p>
@@ -127,6 +128,7 @@
 			var ch_viberate = document.getElementById("viberate");
 			var sel_updatetime = document.getElementById("updatetime");
 			var updatetime_value = sel_updatetime.options[sel_updatetime.selectedIndex].value;
+			var ch_usedust = document.getElementById("usedust");
 
 			var options = {
 				"use24" : ch_use24.checked == true ? 1 : 0,
@@ -134,7 +136,8 @@
 				"viberate" : ch_viberate.checked == true ? 1 : 0,
 				"updatetime" : Number(updatetime_value),
 				"gridx" : lat,
-				"gridx" : lng
+				"gridx" : lng,
+				"usedust" : ch_usedust.checked == true ? 1 : 0
 			}
 			return options;
 		};
